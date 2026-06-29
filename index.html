@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nory · EMFace for TMJ | Relief for Your Jaw, Finally</title>
+<meta name="description" content="EMFace treats the root of TMJ disorder with synchronized HIFES muscle stimulation and radiofrequency heat. Non-invasive, drug-free, and just 20 minutes per session. Nory Dentistry, Port Charlotte, FL.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&family=Glory:ital,wght@0,300;0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --amber:#FFB128; --clay:#DABAA0; --tan:#CEAC91;
+  --forest:#005B49; --forest-deep:#00231C; --forest-darker:#001813;
+  --ink:#222222; --off-white:#FFFEFD; --sand:#F3EBE5; --warm-white:#FFFCF9;
+  --rose:#DB5F81; --white:#FFFFFF;
+  --font-display:"Oswald", "Arial Narrow", sans-serif;
+  --font-body:"Glory", system-ui, sans-serif;
+  --font-ui:"Montserrat", system-ui, sans-serif;
+  --pad-x:clamp(20px, 4.2vw, 56px);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:auto;}
+html,body{width:100%;}
+body{
+  font-family:var(--font-ui);
+  background:var(--sand);
+  color:var(--ink);
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+img{display:block;max-width:100%;}
+a{text-decoration:none;color:inherit;}
+button{font-family:inherit;cursor:pointer;border:none;background:none;}
+
+/* ---------- Typography helpers ---------- */
+.eyebrow{font-family:var(--font-display);font-weight:500;letter-spacing:2px;font-size:14px;text-transform:uppercase;color:var(--amber);}
+.body-copy{font-family:var(--font-body);font-weight:400;line-height:1.55;}
+
+/* Outlined display headings (stroke-only, reveal on scroll) */
+.display-outline{
+  font-family:var(--font-display);
+  font-weight:700;
+  text-transform:uppercase;
+  line-height:0.98;
+  letter-spacing:0.5px;
+  color:transparent;
+  -webkit-text-stroke:1.3px var(--off-white);
+  text-stroke:1.3px var(--off-white);
+}
+.display-outline.green{
+  -webkit-text-stroke-color:var(--forest);
+  text-stroke:1.3px var(--forest);
+}
+.display-outline.dark{
+  -webkit-text-stroke-color:var(--forest-deep);
+  text-stroke:1.3px var(--forest-deep);
+}
+/* scroll reveal via clip-path (progressive enhancement: visible by default, hidden only when JS animates) */
+.reveal{clip-path:inset(0 0 0 0);}
+html.anim .reveal{clip-path:inset(0 100% 0 0);}
+html.anim .reveal.in{clip-path:inset(0 0 0 0);transition:clip-path 1s cubic-bezier(0.76,0,0.24,1);}
+html.anim .fade-up{opacity:0;transform:translateY(28px);}
+html.anim .fade-up.in{opacity:1;transform:translateY(0);transition:opacity .9s cubic-bezier(0.22,1,0.36,1),transform .9s cubic-bezier(0.22,1,0.36,1);}
+
+/* ---------- Buttons ---------- */
+.btn-amber{
+  display:inline-flex;align-items:center;gap:10px;
+  background:var(--amber);color:var(--forest-deep);
+  font-family:var(--font-ui);font-weight:700;font-size:15px;letter-spacing:1px;text-transform:uppercase;
+  padding:16px 32px;border-radius:30px;
+  transition:background-color .25s ease, transform .25s ease;
+  position:relative;
+}
+.btn-amber:hover{background:#ffbf4d;}
+.btn-amber .arr{transition:transform .25s ease;display:inline-flex;font-size:18px;line-height:1;}
+.btn-amber:hover .arr{transform:translateX(4px);}
+.btn-amber.block{justify-content:center;width:100%;}
+.hero-content .btn-amber{font-size:13px;padding:14px 22px;gap:8px;align-self:flex-start;}
+.hero-content .btn-amber .arr{font-size:16px;}
+/* Submit button matching norydentistry.com/connect-with-us */
+.btn-submit{display:flex;align-items:center;justify-content:center;gap:12px;width:100%;height:60px;background:transparent;color:var(--amber);
+  font-family:var(--font-display);font-weight:700;font-size:22px;letter-spacing:.5px;text-transform:uppercase;
+  border:none;border-radius:3px;padding:0 24px;cursor:pointer;transition:color .3s ease, background-color .3s ease;}
+.btn-submit .submit-arrow{flex:none;}
+.btn-submit:hover{color:var(--off-white);}
+
+/* ---------- Image fills + parallax holder ---------- */
+.fill-image{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;}
+.px-holder{position:relative;overflow:hidden;}
+.px-holder .fill-image{
+  will-change:transform;transform:translate3d(0,0,0) scale3d(1.5,1.5,1);
+  transform-origin:center center;backface-visibility:hidden;
+}
+@media (prefers-reduced-motion: reduce){
+  .px-holder .fill-image{transform:translate3d(0,0,0) scale3d(1,1,1)!important;will-change:auto;}
+  html.anim .reveal{clip-path:inset(0 0 0 0)!important;}
+  html.anim .fade-up{opacity:1!important;transform:none!important;}
+}
+
+/* ---------- Header ---------- */
+.header{
+  position:fixed;top:0;left:0;width:100%;z-index:80;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:18px var(--pad-x);
+  background:rgba(0,35,28,0.82);backdrop-filter:blur(8px);
+  transition:background-color .3s ease, padding .3s ease;
+}
+.header .logo{display:flex;align-items:center;gap:12px;}
+.header .logo img{height:46px;width:auto;}
+.header .wordmark{font-family:var(--font-display);font-weight:700;font-size:23px;color:var(--off-white);letter-spacing:.5px;}
+.header-right{display:flex;align-items:center;gap:26px;}
+.header-right .loc{font-family:var(--font-display);font-weight:500;letter-spacing:1px;font-size:13px;color:var(--amber);text-transform:uppercase;}
+.header-right .phone{font-family:var(--font-ui);font-weight:600;font-size:14px;color:var(--off-white);}
+.header-book{
+  display:inline-flex;align-items:center;gap:8px;background:var(--amber);color:var(--forest-deep);
+  font-family:var(--font-ui);font-weight:700;font-size:13px;letter-spacing:.8px;text-transform:uppercase;
+  padding:12px 24px;border-radius:30px;transition:background-color .25s ease;
+}
+.header-book:hover{background:#ffbf4d;}
+.header-book .book-ico{display:none;}
+.header-book .book-txt-m{display:none;}
+
+/* ---------- Hero ---------- */
+.hero{position:relative;width:100%;background:linear-gradient(rgba(0,35,28,0.45),rgba(0,35,28,0.6)), url('images/outside4.jpg');background-size:cover;background-position:center;overflow:hidden;min-height:100vh;min-height:100svh;}
+.hero-inner{display:grid;grid-template-columns:1.05fr 1fr;gap:56px;align-items:center;padding:130px var(--pad-x) 80px;min-height:100vh;min-height:100svh;}
+.hero-content{z-index:2;max-width:620px;display:flex;flex-direction:column;gap:28px;}
+.hero-h1{font-size:clamp(42px,5.6vw,82px);}
+.hero-sub{max-width:560px;color:var(--off-white);font-family:var(--font-body);font-weight:300;font-size:20px;line-height:1.45;}
+.hero-sub .hl{color:var(--amber);font-weight:600;}
+/* 20% off deal badge (brand sun medallion) */
+.deal-badge{position:absolute;top:104px;right:var(--pad-x);z-index:6;width:120px;height:120px;display:flex;align-items:center;justify-content:center;}
+.deal-badge .db-sun{position:absolute;inset:0;width:100%;height:100%;animation:spin 20s linear infinite;}
+.deal-badge .db-disc{position:absolute;width:92px;height:92px;border-radius:50%;background:var(--amber);box-shadow:0 8px 22px rgba(0,0,0,0.28);}
+.deal-badge .db-text{position:relative;display:flex;flex-direction:column;align-items:center;line-height:0.95;}
+.deal-badge .db-pct{font-family:var(--font-display);font-weight:700;font-size:30px;color:var(--forest-deep);}
+.deal-badge .db-off{font-family:var(--font-ui);font-weight:700;font-size:12px;letter-spacing:2px;color:var(--forest-deep);}
+@media (prefers-reduced-motion: reduce){.deal-badge .db-sun{animation:none;}}
+/* vertical marquee carousel (from vertical-carousel.html) */
+.hero-carousel{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:16px;height:clamp(420px,66vh,680px);}
+.hcar-col{position:relative;overflow:hidden;height:100%;}
+.hcar-track{display:flex;flex-direction:column;gap:16px;will-change:transform;}
+.hcar-track.up{animation:hcar-up 48s linear infinite;}
+.hcar-track.down{animation:hcar-down 48s linear infinite;}
+@keyframes hcar-up{0%{transform:translateY(0)}100%{transform:translateY(-50%)}}
+@keyframes hcar-down{0%{transform:translateY(-50%)}100%{transform:translateY(0)}}
+.hcar-img{aspect-ratio:4/5;width:100%;overflow:hidden;border-radius:24px;}
+.hcar-img img{width:100%;height:100%;object-fit:cover;display:block;}
+.hcar-scrim-top{position:absolute;left:0;right:0;top:0;height:120px;z-index:10;pointer-events:none;background:linear-gradient(180deg,#00231C 0%,rgba(0,35,28,0) 100%);}
+.hcar-scrim-bottom{position:absolute;left:0;right:0;bottom:0;height:120px;z-index:10;pointer-events:none;background:linear-gradient(0deg,#00231C 0%,rgba(0,35,28,0) 100%);}
+@media (prefers-reduced-motion: reduce){.hcar-track.up,.hcar-track.down{animation:none;}}
+/* horizontal one-row carousel (tablet/mobile) */
+.hero-carousel-h{position:relative;width:100%;overflow:hidden;display:none;}
+.hcar-row{display:flex;gap:16px;width:max-content;animation:hcar-left 38s linear infinite;}
+@keyframes hcar-left{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.hcar-h-img{flex:none;width:190px;height:250px;overflow:hidden;border-radius:20px;}
+.hcar-h-img img{width:100%;height:100%;object-fit:cover;display:block;}
+.hcar-scrim-left{position:absolute;top:0;bottom:0;left:0;width:60px;z-index:10;pointer-events:none;background:linear-gradient(90deg,rgba(0,35,28,0.9),rgba(0,35,28,0));}
+.hcar-scrim-right{position:absolute;top:0;bottom:0;right:0;width:60px;z-index:10;pointer-events:none;background:linear-gradient(270deg,rgba(0,35,28,0.9),rgba(0,35,28,0));}
+@media (prefers-reduced-motion: reduce){.hcar-row{animation:none;}}
+
+/* ---------- Stats band ---------- */
+.stats-band{background:var(--amber);display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;padding:34px var(--pad-x);}
+.stat{display:flex;flex-direction:column;gap:4px;}
+.stat .num{
+  font-family:var(--font-display);font-weight:700;text-transform:uppercase;font-size:clamp(28px,3vw,44px);line-height:1;
+  color:transparent;-webkit-text-stroke:1.3px var(--forest-deep);
+  transition:color .35s ease, -webkit-text-stroke-color .35s ease;cursor:default;
+}
+.stat:hover .num,.stat.tapped .num{color:var(--forest-deep);-webkit-text-stroke-width:0;}
+.stat .lbl{font-family:var(--font-ui);font-weight:600;font-size:13px;letter-spacing:1px;color:rgba(0,35,28,0.8);text-transform:uppercase;}
+
+/* ---------- Section base ---------- */
+section{width:100%;}
+.sec-pad{padding:clamp(44px,7.5vw,96px) var(--pad-x);}
+.eyebrow-amber{color:var(--amber);}
+
+/* ---------- Quiz ---------- */
+.quiz{background:var(--forest);position:relative;overflow:hidden;}
+.quiz-head{display:flex;flex-direction:column;gap:14px;margin-bottom:48px;}
+.quiz-head .display-outline{font-size:clamp(34px,4.4vw,58px);}
+.quiz-body{display:flex;gap:56px;align-items:flex-start;}
+.step-rail{width:300px;flex:none;display:flex;flex-direction:column;}
+.step{display:flex;align-items:center;gap:16px;padding:18px 0;transition:opacity .3s ease;}
+.step .num{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--font-ui);font-weight:700;font-size:16px;flex:none;
+  background:rgba(255,255,255,0.1);color:var(--off-white);border:1px solid rgba(255,255,255,0.25);transition:all .3s ease;}
+.step .lbl{font-family:var(--font-ui);font-weight:500;font-size:16px;color:rgba(255,254,253,0.7);transition:color .3s ease;}
+.step.active .num{background:var(--amber);color:var(--forest-deep);border-color:var(--amber);}
+.step.active .lbl{color:var(--white);font-weight:700;}
+.step.done .num{background:var(--amber);color:var(--forest-deep);border-color:var(--amber);}
+.active-q{background:var(--forest-deep);padding:40px;flex:1;display:flex;flex-direction:column;gap:24px;min-height:420px;}
+.step-tag{font-family:var(--font-display);font-weight:500;letter-spacing:2px;font-size:13px;color:var(--amber);text-transform:uppercase;}
+.q-title{font-family:var(--font-display);font-weight:600;font-size:36px;line-height:1.05;color:var(--off-white);}
+.options{display:flex;flex-direction:column;gap:12px;}
+.opt{display:flex;align-items:center;gap:14px;padding:18px 22px;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.05);cursor:pointer;transition:all .2s ease;text-align:left;width:100%;}
+.opt:hover{background:rgba(255,255,255,0.09);}
+.opt .radio{width:20px;height:20px;border-radius:50%;border:2px solid rgba(255,255,255,0.4);flex:none;transition:all .2s ease;position:relative;}
+.opt .opt-label{font-family:var(--font-body);font-weight:400;font-size:18px;color:var(--off-white);}
+.opt.selected{background:rgba(255,177,40,0.15);border-color:var(--amber);}
+.opt.selected .radio{border-color:var(--amber);background:radial-gradient(circle, var(--amber) 0 45%, transparent 47%);}
+.cta-row{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-top:12px;flex-wrap:wrap;}
+.result-note .rn-title{font-family:var(--font-ui);font-weight:700;font-size:15px;color:var(--white);}
+.result-note .rn-sub{font-family:var(--font-body);font-weight:400;font-size:13px;color:rgba(255,254,253,0.7);}
+.quiz-result-text{font-family:var(--font-body);font-weight:300;font-size:18px;line-height:1.55;color:rgba(255,254,253,0.85);max-width:560px;}
+.quiz-back{font-family:var(--font-ui);font-weight:600;font-size:13px;letter-spacing:1px;text-transform:uppercase;color:rgba(255,254,253,0.6);transition:color .2s ease;}
+.quiz-back:hover{color:var(--amber);}
+.sun-circle{position:absolute;width:110px;height:110px;animation:spin 26s linear infinite;}
+@keyframes spin{to{transform:rotate(360deg);}}
+@media (prefers-reduced-motion: reduce){.sun-circle{animation:none;}}
+
+/* ---------- Symptoms ---------- */
+.symptoms{background:var(--forest-deep);}
+.sym-head{display:flex;justify-content:space-between;align-items:flex-end;gap:40px;margin-bottom:48px;}
+.sym-head .display-outline{font-size:clamp(32px,4.2vw,56px);}
+.sym-note{max-width:340px;font-family:var(--font-body);font-weight:400;font-size:17px;line-height:1.45;color:rgba(255,254,253,0.8);}
+.sym-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+.sym-card{position:relative;height:340px;overflow:hidden;cursor:pointer;}
+.sym-card .fill-image{transition:transform .7s cubic-bezier(0.22,1,0.36,1);}
+.sym-card:hover .fill-image,.sym-card.tapped .fill-image{transform:scale(1.09);}
+.sym-card .card-scrim{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,35,28,0) 40%,rgba(0,35,28,0.85) 100%);z-index:1;}
+.sym-card .card-label{position:absolute;left:24px;bottom:22px;z-index:2;color:var(--white);font-family:var(--font-display);font-weight:600;font-size:22px;text-transform:uppercase;letter-spacing:.5px;}
+
+/* ---------- Procedure ---------- */
+.procedure{background:var(--sand);display:flex;gap:64px;align-items:flex-start;}
+.proc-left{width:420px;flex:none;display:flex;flex-direction:column;gap:24px;}
+.proc-left .display-outline{font-size:clamp(30px,3.4vw,46px);}
+.proc-sub{font-family:var(--font-body);font-weight:400;font-size:17px;line-height:1.55;color:rgba(34,34,34,0.8);max-width:380px;}
+.proc-video{position:relative;aspect-ratio:3/4;width:100%;max-width:440px;background:var(--forest-deep);overflow:hidden;margin:8px auto 0;}
+.proc-video video,.proc-video img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+.proc-video .pv-scrim{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,35,28,0.1) 40%,rgba(0,35,28,0.85) 100%);z-index:1;}
+.proc-video .play-btn{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:64px;height:64px;border-radius:50%;background:var(--amber);display:flex;align-items:center;justify-content:center;z-index:2;transition:transform .25s ease;}
+.proc-video .play-btn:hover{transform:translate(-50%,-50%) scale(1.08);}
+.proc-video .pv-tag{position:absolute;top:24px;left:24px;z-index:2;background:rgba(0,35,28,0.6);color:var(--off-white);font-family:var(--font-ui);font-weight:600;font-size:12px;letter-spacing:1px;text-transform:uppercase;padding:8px 14px;display:flex;align-items:center;gap:8px;}
+.proc-video .pv-label{position:absolute;left:24px;bottom:48px;z-index:2;color:var(--white);font-family:var(--font-display);font-weight:600;font-size:22px;text-transform:uppercase;}
+.proc-video .pv-meta{position:absolute;left:24px;bottom:24px;z-index:2;color:rgba(255,254,253,0.75);font-family:var(--font-ui);font-size:13px;}
+.proc-content{flex:1;display:flex;flex-direction:column;gap:28px;}
+.feat{display:flex;gap:20px;padding:24px 0;border-bottom:1px solid var(--clay);align-items:flex-start;}
+.feat .feat-ico{width:52px;height:52px;border-radius:50%;background:var(--forest);color:var(--amber);display:flex;align-items:center;justify-content:center;flex:none;}
+.feat .feat-title{font-family:var(--font-display);font-weight:600;font-size:25px;line-height:1.1;color:var(--ink);margin-bottom:6px;position:relative;display:inline-block;}
+.feat .feat-title::after{content:"";position:absolute;left:0;bottom:-4px;height:2px;width:0;background:var(--amber);transition:width .5s cubic-bezier(0.77,0,0.175,1);}
+.feat:hover .feat-title::after,.feat.tapped .feat-title::after{width:100%;}
+.feat .feat-desc{font-family:var(--font-body);font-weight:300;font-size:16px;line-height:1.55;color:rgba(34,34,34,0.8);}
+.proc-stats{display:flex;padding:12px 0;flex-wrap:wrap;}
+.proc-stat{flex:1;min-width:120px;display:flex;flex-direction:column;gap:10px;padding:26px 30px;}
+.proc-stat:not(:first-child){border-left:1px solid var(--clay);}
+.proc-stat{cursor:default;}
+.proc-stat .ps-num{font-family:var(--font-display);font-weight:700;font-size:50px;color:var(--forest);line-height:1;transition:transform .3s ease,color .3s ease;transform-origin:left center;}
+.proc-stat .ps-accent{width:44px;height:4px;border-radius:2px;background:var(--amber);transition:width .3s ease;}
+.proc-stat .ps-lbl{font-family:var(--font-display);font-weight:500;font-size:13px;letter-spacing:1.5px;color:#7A6E64;line-height:1.3;}
+.proc-stat:hover .ps-num,.proc-stat.tapped .ps-num{transform:translateY(-4px) scale(1.08);}
+.proc-stat:hover .ps-accent,.proc-stat.tapped .ps-accent{width:72px;}
+.proc-cards{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;}
+.proc-cards .pc{height:200px;overflow:hidden;border-radius:12px;}
+.proc-cards .pc img{width:100%;height:100%;object-fit:cover;transition:transform .7s cubic-bezier(0.22,1,0.36,1);}
+.proc-cards .pc:hover img,.proc-cards .pc.tapped img{transform:scale(1.09);}
+
+/* ---------- Reviews ---------- */
+.reviews{background:var(--forest-deep);}
+.rev-head{display:flex;justify-content:space-between;align-items:flex-end;gap:40px;margin-bottom:48px;}
+.rev-head .display-outline{font-size:clamp(32px,4.2vw,56px);}
+.rev-rating{display:flex;flex-direction:column;align-items:flex-end;gap:4px;flex:none;}
+.rev-rating .rr-score{font-family:var(--font-display);font-weight:700;font-size:48px;color:var(--off-white);line-height:1;}
+.rev-rating .rr-stars{color:var(--amber);font-size:18px;letter-spacing:2px;}
+.rev-rating .rr-meta{font-family:var(--font-ui);font-weight:500;font-size:12px;color:rgba(255,254,253,0.6);letter-spacing:.5px;}
+.rev-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+.rev-card{background:var(--forest);padding:32px;border-left:3px solid var(--amber);display:flex;flex-direction:column;gap:18px;transition:box-shadow .35s ease, transform .35s ease;}
+.rev-card:hover,.rev-card.tapped{transform:translateY(-4px);box-shadow:0 0 0 1px rgba(255,177,40,0.55), 0 0 28px rgba(255,177,40,0.28), 0 16px 44px rgba(0,0,0,0.25);}
+.rev-card .rc-quote{font-family:var(--font-body);font-weight:400;font-size:17px;line-height:1.55;color:rgba(255,254,253,0.92);}
+.rev-card .rc-foot{display:flex;justify-content:space-between;align-items:center;}
+.rev-card .rc-name{font-family:var(--font-ui);font-weight:700;font-size:14px;color:var(--white);}
+.rev-card .rc-src{font-family:var(--font-ui);font-weight:500;font-size:12px;color:var(--amber);letter-spacing:.5px;}
+
+/* ---------- Doctor ---------- */
+.doctor{background:var(--warm-white);display:flex;gap:0;align-items:flex-start;position:relative;overflow:hidden;}
+.doc-visual{width:620px;flex:none;position:relative;height:600px;}
+.dv-device{position:absolute;top:0;left:0;width:520px;height:520px;border-radius:16px;border:2px solid var(--forest);overflow:hidden;}
+.dv-device img{width:100%;height:100%;object-fit:cover;object-position:center;}
+.dv-tag{position:absolute;left:0;bottom:28px;z-index:2;display:flex;align-items:center;gap:8px;background:var(--forest-deep);color:var(--off-white);font-family:var(--font-ui);font-weight:700;font-size:12px;letter-spacing:1px;text-transform:uppercase;padding:12px 18px;}
+.dv-tag svg{color:var(--amber);flex:none;}
+.dv-card{position:absolute;left:300px;top:300px;width:320px;background:var(--white);border-radius:16px;border:2px solid var(--forest);overflow:hidden;box-shadow:0 14px 36px rgba(0,35,28,0.12);z-index:3;}
+.dv-photo-img{width:100%;height:220px;object-fit:cover;object-position:72% center;display:block;transition:transform .7s cubic-bezier(0.22,1,0.36,1);}
+.dv-card{cursor:pointer;}
+.dv-card:hover .dv-photo-img,.dv-card.tapped .dv-photo-img{transform:scale(1.09);}
+.dv-inner{padding:20px;display:flex;flex-direction:column;gap:4px;}
+.dv-inner .nm{font-family:var(--font-display);font-weight:700;font-size:24px;color:#00231C;}
+.dv-inner .rl{font-family:var(--font-ui);font-weight:600;font-size:13px;letter-spacing:.5px;color:var(--forest);}
+.doc-text{flex:1;padding:20px 0 0 72px;display:flex;flex-direction:column;gap:22px;}
+.doc-text .display-outline{font-size:clamp(30px,3.6vw,50px);}
+.doc-text .d-body{font-family:var(--font-body);font-weight:400;font-size:18px;line-height:1.55;color:var(--ink);}
+.doc-quote{font-family:var(--font-body);font-style:italic;font-size:19px;line-height:1.45;color:var(--forest);border-left:3px solid var(--amber);padding-left:18px;}
+.doc-feats{display:flex;flex-direction:column;gap:14px;padding-top:8px;}
+.doc-feat{display:flex;align-items:center;gap:12px;font-family:var(--font-body);font-size:17px;color:var(--ink);}
+.doc-feat .df-ico{color:var(--forest);flex:none;display:flex;}
+
+/* ---------- Contact ---------- */
+.contact{background:var(--forest);display:flex;gap:56px;align-items:flex-start;}
+.contact-form{flex:1;display:flex;flex-direction:column;gap:24px;}
+.contact-form .display-outline{font-size:clamp(30px,3.6vw,50px);}
+.form-row{display:flex;gap:16px;}
+.field{display:flex;flex-direction:column;gap:8px;flex:1;}
+.field label{font-family:var(--font-ui);font-weight:600;font-size:12px;letter-spacing:.5px;text-transform:uppercase;color:rgba(255,254,253,0.7);}
+.field input,.field textarea{
+  font-family:var(--font-ui);font-size:16px;color:var(--white);
+  background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.18);border-radius:23px;padding:14px 18px;width:100%;
+  transition:border-color .3s ease;
+}
+.field textarea{border-radius:18px;resize:vertical;min-height:120px;}
+.field input::placeholder,.field textarea::placeholder{color:rgba(255,254,253,0.4);}
+.field input:focus,.field textarea:focus{outline:none;border-color:var(--rose);}
+.form-deal{display:flex;align-items:center;gap:12px;font-family:var(--font-body);font-weight:400;font-size:16px;line-height:1.4;color:var(--off-white);background:rgba(255,177,40,0.12);border:1px solid rgba(255,177,40,0.4);border-radius:14px;padding:14px 18px;}
+.form-deal .fd-pct{flex:none;font-family:var(--font-display);font-weight:700;font-size:24px;color:var(--amber);line-height:1;}
+.form-deal strong{color:var(--amber);font-weight:700;}
+.map-col{width:560px;flex:none;display:flex;flex-direction:column;gap:20px;}
+.map-col .mc-head .display-outline{font-size:clamp(26px,2.8vw,40px);}
+.map-col .mc-city{font-family:var(--font-display);font-weight:700;font-size:32px;color:var(--off-white);text-transform:uppercase;}
+.map-frame{height:300px;overflow:hidden;background:#0A332A;border:1px solid rgba(255,255,255,0.12);}
+.map-frame iframe{width:100%;height:100%;border:0;filter:grayscale(0.3);}
+.contact-info{display:flex;gap:48px;flex-wrap:wrap;padding-top:4px;}
+.ci-col .ci-label{font-family:var(--font-display);font-weight:500;letter-spacing:2px;font-size:12px;color:var(--amber);text-transform:uppercase;margin-bottom:8px;}
+.ci-col .ci-big{font-family:var(--font-ui);font-weight:700;font-size:22px;color:var(--off-white);}
+.ci-col .ci-line{font-family:var(--font-ui);font-weight:500;font-size:14px;color:rgba(255,254,253,0.85);line-height:1.7;}
+.ci-col .ci-addr{font-family:var(--font-ui);font-weight:500;font-size:14px;color:rgba(255,254,253,0.85);line-height:1.6;margin-top:6px;}
+
+/* ---------- FAQ ---------- */
+.faq{background:var(--forest-deep);}
+.faq-head{display:flex;flex-direction:column;gap:14px;margin-bottom:40px;}
+.faq-head .display-outline{font-size:clamp(32px,4.2vw,56px);}
+.faq-item{border-top:1px solid rgba(255,255,255,0.15);padding:28px 0;}
+.faq-q{display:flex;align-items:center;justify-content:space-between;gap:24px;cursor:pointer;width:100%;text-align:left;}
+.faq-q .q-text{font-family:var(--font-display);font-weight:600;font-size:26px;color:var(--off-white);text-transform:none;}
+.faq-q .q-ico{color:var(--amber);flex:none;display:flex;transition:transform .3s ease;}
+.faq-a{font-family:var(--font-body);font-weight:400;font-size:18px;line-height:1.5;color:rgba(255,254,253,0.85);max-width:980px;overflow:hidden;max-height:0;opacity:0;transition:max-height .4s ease,opacity .4s ease,margin .4s ease;}
+.faq-item.open .faq-a{max-height:300px;opacity:1;margin-top:14px;}
+.faq-item.open .q-ico{transform:rotate(180deg);}
+
+/* ---------- Footer ---------- */
+.footer{background:var(--forest-darker);padding:64px var(--pad-x);display:flex;flex-direction:column;gap:32px;}
+.footer-top{display:flex;justify-content:space-between;align-items:flex-start;gap:40px;flex-wrap:wrap;}
+.footer-brand{display:flex;flex-direction:column;gap:14px;}
+.footer-brand .fb-logo-img{height:150px;width:auto;margin-bottom:4px;transition:filter .35s ease;}
+.footer-brand .fb-logo-img:hover,.footer-brand .fb-logo-img.tapped{filter:drop-shadow(0 0 20px rgba(255,177,40,0.6));}
+.footer-brand .fb-line{font-family:var(--font-ui);font-weight:500;font-size:14px;color:rgba(255,254,253,0.7);line-height:1.7;}
+.footer-brand .fb-phone{font-family:var(--font-ui);font-weight:600;font-size:15px;color:var(--amber);}
+.footer-social{display:flex;gap:14px;}
+.social-link{width:48px;height:48px;border-radius:50%;border:2px solid var(--clay);color:var(--clay);display:flex;align-items:center;justify-content:center;transition:all .2s ease;}
+.social-link:hover{background:var(--clay);color:var(--forest);}
+.footer-divider{height:1px;background:rgba(255,255,255,0.1);width:100%;}
+.footer-copy{font-family:var(--font-ui);font-weight:500;font-size:13px;color:rgba(255,254,253,0.5);}
+
+/* ---------- Page load curtain ---------- */
+#curtain{position:fixed;inset:0;z-index:200;pointer-events:none;display:flex;}
+#curtain .panel{flex:1;background:var(--forest);transform:translateY(0);}
+body.loaded #curtain{pointer-events:none;}
+
+/* ---------- Responsive ---------- */
+@media(max-width:1080px){
+  .hero-inner{grid-template-columns:1fr;gap:28px;}
+  .hero-carousel{display:none;}
+  .hero-carousel-h{display:block;}
+  .header-right .loc{display:none;}
+  .quiz-body{flex-direction:column;gap:32px;}
+  .step-rail{width:100%;flex-direction:row;flex-wrap:wrap;gap:8px;}
+  .step{flex:1;min-width:140px;padding:10px 0;}
+  .step .lbl{font-size:14px;}
+  .procedure{flex-direction:column;gap:40px;}
+  .proc-left{width:100%;}
+  .quiz .sun-circle,.doctor .sun-circle{display:none;}
+  .deal-badge{top:auto;bottom:18px;right:var(--pad-x);width:98px;height:98px;}
+  .deal-badge .db-disc{width:76px;height:76px;}
+  .deal-badge .db-pct{font-size:25px;}
+  .deal-badge .db-off{font-size:11px;}
+  .doctor{flex-direction:column;}
+  .doc-visual{width:100%;max-width:520px;height:auto;}
+  .dv-device{position:relative;width:100%;height:auto;aspect-ratio:1/1;}
+  .dv-card{position:relative;left:auto;top:auto;width:86%;margin:-64px 0 0 auto;}
+  .doc-text{padding:32px 0 0 0;}
+  .contact{flex-direction:column;}
+  .map-col{width:100%;}
+}
+@media(max-width:680px){
+  .header{padding:14px var(--pad-x);}
+  .header .logo img{height:38px;}
+  .header-right{gap:12px;}
+  .header-right .phone{font-size:13px;}
+  .header-book{padding:9px 14px;font-size:11px;letter-spacing:.4px;gap:6px;}
+  .header-book .book-txt{display:none;}
+  .header-book .book-txt-m{display:inline;}
+  .header-book .book-ico{display:block;width:15px;height:15px;}
+  .hero-inner{padding:104px var(--pad-x) 48px;}
+  .hero-sub{font-size:17px;}
+  .hcar-h-img{width:158px;height:210px;}
+  .stats-band{justify-content:flex-start;gap:20px 36px;}
+  .stat{min-width:38%;}
+  .active-q{padding:24px;}
+  .q-title{font-size:26px;}
+  .sym-head,.rev-head{flex-direction:column;align-items:flex-start;}
+  .rev-rating{align-items:flex-start;flex-direction:row;gap:12px;align-items:center;}
+  .sym-grid,.rev-grid{grid-template-columns:1fr;}
+  .dv-card{width:94%;}
+  .proc-cards{display:flex;flex-wrap:wrap;justify-content:center;}
+  .proc-cards .pc{width:calc(50% - 8px);}
+  .proc-stats{gap:8px;}
+  .proc-stat{padding:12px 14px;min-width:45%;}
+  .proc-stat:not(:first-child){border-left:none;}
+  .form-row{flex-direction:column;}
+  .faq-q .q-text{font-size:20px;}
+  .contact-info{gap:28px;}
+}
+</style>
+</head>
+<body>
+
+<!-- Page load curtain -->
+<div id="curtain"><div class="panel"></div><div class="panel"></div><div class="panel"></div></div>
+
+<!-- Header -->
+<header class="header">
+  <a class="logo" href="#top" aria-label="Nory Dentistry home">
+    <img src="images/nav-logo.svg" alt="Nory Dentistry logo">
+  </a>
+  <div class="header-right">
+    <span class="loc">Port Charlotte, FL</span>
+    <a class="phone" href="tel:+19416298187">(941) 629-8187</a>
+    <a class="header-book" href="#contact"><svg class="book-ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"></rect><path d="M16 2v4M8 2v4M3 10h18"></path></svg><span class="book-txt">Book Appointment</span><span class="book-txt-m">Book Now</span></a>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-content">
+      <span class="eyebrow">FDA-Cleared · Needle-Free · Hands-Free</span>
+      <h1 class="hero-h1 display-outline reveal">Relief for your jaw, finally</h1>
+      <p class="hero-sub fade-up">EMFace treats the root of TMJ disorder with synchronized HIFES muscle stimulation and radiofrequency heat. Non-invasive, drug-free, and just 20 minutes per session. <span class="hl">Book through this page and save 20% on your treatment plan, for a limited time.</span></p>
+      <a class="btn-amber fade-up" href="#contact">Book Your Consultation <span class="arr" aria-hidden="true">&rarr;</span></a>
+    </div>
+    <div class="hero-carousel fade-up" aria-hidden="true">
+      <div class="hcar-col"><div class="hcar-track up" id="marqA"></div></div>
+      <div class="hcar-col"><div class="hcar-track down" id="marqB"></div></div>
+      <div class="hcar-scrim-top"></div>
+      <div class="hcar-scrim-bottom"></div>
+    </div>
+    <div class="hero-carousel-h fade-up" aria-hidden="true">
+      <div class="hcar-row" id="marqH"></div>
+      <div class="hcar-scrim-left"></div>
+      <div class="hcar-scrim-right"></div>
+    </div>
+  </div>
+  <div class="deal-badge" aria-label="20 percent off EMFace, limited-time offer">
+    <img class="db-sun" src="images/sun-circle.png" alt="">
+    <span class="db-disc"></span>
+    <span class="db-text"><span class="db-pct">20%</span><span class="db-off">OFF</span></span>
+  </div>
+</section>
+
+<!-- Stats band -->
+<section class="stats-band">
+  <div class="stat"><span class="num">20 Min</span><span class="lbl">per session</span></div>
+  <div class="stat"><span class="num">4 Sessions</span><span class="lbl">to full relief</span></div>
+  <div class="stat"><span class="num">0 Downtime</span><span class="lbl">walk right out</span></div>
+  <div class="stat"><span class="num">FDA-Cleared</span><span class="lbl">clinically proven</span></div>
+</section>
+
+<!-- Quiz -->
+<section class="quiz sec-pad" id="quiz">
+  <div class="quiz-head">
+    <span class="eyebrow">Find out in 60 seconds</span>
+    <h2 class="display-outline reveal">Are you a candidate for EMFace?</h2>
+  </div>
+  <div class="quiz-body">
+    <div class="step-rail" id="stepRail">
+      <div class="step active" data-step="1"><span class="num">1</span><span class="lbl">Your concern</span></div>
+      <div class="step" data-step="2"><span class="num">2</span><span class="lbl">Frequency</span></div>
+      <div class="step" data-step="3"><span class="num">3</span><span class="lbl">What you've tried</span></div>
+      <div class="step" data-step="4"><span class="num">4</span><span class="lbl">What matters most</span></div>
+    </div>
+    <div class="active-q" id="activeQ">
+      <!-- filled by JS -->
+    </div>
+  </div>
+  <img class="sun-circle" src="images/sun-circle.png" alt="" style="left:165px;bottom:60px;">
+</section>
+
+<!-- Symptoms -->
+<section class="symptoms sec-pad">
+  <div class="sym-head">
+    <div>
+      <span class="eyebrow" style="display:block;margin-bottom:14px;">Conditions Treated</span>
+      <h2 class="display-outline reveal">If your jaw is holding you back</h2>
+    </div>
+    <p class="sym-note fade-up">EMFace also helps with referred earaches and tinnitus tied to jaw tension.</p>
+  </div>
+  <div class="sym-grid">
+    <div class="sym-card"><img class="fill-image" src="images/symptom1.jpg" alt="Chronic jaw pain"><div class="card-scrim"></div><span class="card-label">Chronic jaw pain &amp; soreness</span></div>
+    <div class="sym-card"><img class="fill-image" src="images/symptom2.jpg" alt="Teeth grinding"><div class="card-scrim"></div><span class="card-label">Teeth grinding (bruxism)</span></div>
+    <div class="sym-card"><img class="fill-image" src="images/symptom3.jpg" alt="Tension headaches"><div class="card-scrim"></div><span class="card-label">Tension headaches</span></div>
+    <div class="sym-card"><img class="fill-image" src="images/symptom4.jpg" alt="Jaw locking"><div class="card-scrim"></div><span class="card-label">Jaw locking &amp; limited movement</span></div>
+  </div>
+</section>
+
+<!-- Procedure -->
+<section class="procedure sec-pad">
+  <div class="proc-left">
+    <span class="eyebrow" style="color:var(--forest);">How EMFace Works</span>
+    <h2 class="display-outline green reveal">Two technologies, working in sync</h2>
+    <p class="proc-sub fade-up">EMFace pairs HIFES muscle stimulation with synchronized radiofrequency to treat both the muscular and inflammatory drivers of TMD. Hands-free, in about 20 minutes.</p>
+    <div class="proc-video">
+      <video src="images/EmfaceTMJ.mp4" poster="images/device1.jpg" muted loop playsinline preload="none" id="procVideo"></video>
+      <div class="pv-scrim"></div>
+      <span class="pv-tag">&#9658; Watch</span>
+      <button class="play-btn" id="playBtn" aria-label="Play video">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="#00231C"><path d="M8 5v14l11-7z"/></svg>
+      </button>
+      <span class="pv-label">See EMFace in action</span>
+      <span class="pv-meta">20 minutes · hands-free · no downtime</span>
+    </div>
+  </div>
+  <div class="proc-content">
+    <div class="feat fade-up">
+      <span class="feat-ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></span>
+      <div><div class="feat-title">HIFES&reg;: High-Intensity Focused Electrical Stimulation</div><p class="feat-desc">Targets the masseter, temporalis and pterygoid muscles, relaxing hypertonic muscles, reducing clenching and restoring neuromuscular balance.</p></div>
+    </div>
+    <div class="feat fade-up">
+      <span class="feat-ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg></span>
+      <div><div class="feat-title">Synchronized Radiofrequency (RF)</div><p class="feat-desc">Therapeutic heat boosts circulation, lowers inflammation and speeds healing in the joint and surrounding tissue.</p></div>
+    </div>
+    <div class="feat fade-up">
+      <span class="feat-ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.9 5.8L19.5 10l-5.6 1.2L12 17l-1.9-5.8L4.5 10l5.6-1.2z"/></svg></span>
+      <div><div class="feat-title">The Synergy</div><p class="feat-desc">Treating the muscular and inflammatory components together addresses TMD at its source, and tones the jawline as a welcome bonus.</p></div>
+    </div>
+    <div class="proc-stats fade-up">
+      <div class="proc-stat"><span class="ps-num">20 min</span><span class="ps-accent"></span><span class="ps-lbl">per session</span></div>
+      <div class="proc-stat"><span class="ps-num">~4</span><span class="ps-accent"></span><span class="ps-lbl">sessions, 5-10 days apart</span></div>
+      <div class="proc-stat"><span class="ps-num">0</span><span class="ps-accent"></span><span class="ps-lbl">downtime</span></div>
+      <div class="proc-stat"><span class="ps-num">FDA</span><span class="ps-accent"></span><span class="ps-lbl">cleared</span></div>
+    </div>
+    <div class="proc-cards fade-up">
+      <div class="pc"><img src="images/emface16.jpg" alt="EMFace treatment"></div>
+      <div class="pc"><img src="images/emface17.jpg" alt="EMFace device"></div>
+      <div class="pc"><img src="images/emface11.jpg" alt="EMFace session"></div>
+    </div>
+    <a class="btn-amber fade-up" href="#contact" style="align-self:flex-start;">Book Your Consultation <span class="arr" aria-hidden="true">&rarr;</span></a>
+  </div>
+</section>
+
+<!-- Reviews -->
+<section class="reviews sec-pad">
+  <div class="rev-head">
+    <div>
+      <span class="eyebrow" style="display:block;margin-bottom:14px;">What Patients Say</span>
+      <h2 class="display-outline reveal">Trusted by the community</h2>
+    </div>
+    <div class="rev-rating fade-up">
+      <span class="rr-score">4.9</span>
+      <span class="rr-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+      <span class="rr-meta">436 Google Reviews</span>
+    </div>
+  </div>
+  <div class="rev-grid">
+    <div class="rev-card fade-up"><p class="rc-quote">"Dr. Noriega has made so many improvements to the office and really has raised the bar, as far as local quality dentistry. The new technology and skills offered are so refreshing for this area, and the office is gorgeous."</p><div class="rc-foot"><span class="rc-name">Brenda W.</span><span class="rc-src">5.0 · Google</span></div></div>
+    <div class="rev-card fade-up"><p class="rc-quote">"If you are looking for a professional and courteous dentist that utilizes the latest technology, Nory Dentistry is the place for you. I highly recommend Dr. Noriega and her staff."</p><div class="rc-foot"><span class="rc-name">Leslie P.</span><span class="rc-src">5.0 · Google</span></div></div>
+    <div class="rev-card fade-up"><p class="rc-quote">"Kind, knowledgeable and excellent at her craft. I never expected to feel great about going to the dentist, but I do here. My new bridge is so beautiful and natural looking."</p><div class="rc-foot"><span class="rc-name">Ellie H.</span><span class="rc-src">5.0 · Google</span></div></div>
+    <div class="rev-card fade-up"><p class="rc-quote">"The facility was extremely clean and pleasant. The doctor and staff were excellent. I would highly recommend them."</p><div class="rc-foot"><span class="rc-name">Jean F.</span><span class="rc-src">5.0 · Google</span></div></div>
+  </div>
+</section>
+
+<!-- Doctor -->
+<section class="doctor sec-pad">
+  <div class="doc-visual">
+    <div class="dv-device px-holder">
+      <img class="fill-image" src="images/device1.jpg" alt="The EMFace device">
+      <span class="dv-tag"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M9 1v3M15 1v3M9 20v3M15 20v3M20 9h3M20 14h3M1 9h3M1 14h3"/></svg> The EMFace Device</span>
+    </div>
+    <div class="dv-card">
+      <img class="dv-photo-img" src="images/drnory.jpg" alt="Dr. Yamila Noriega-Abreu">
+      <div class="dv-inner">
+        <div class="nm">Dr. Yamila Noriega-Abreu</div>
+        <div class="rl">Doctor · Port Charlotte, FL</div>
+      </div>
+    </div>
+  </div>
+  <div class="doc-text">
+    <span class="eyebrow" style="color:var(--forest);">Your Doctor</span>
+    <h2 class="display-outline green reveal">Advanced TMJ care, led by technology</h2>
+    <p class="d-body fade-up">Dr. Yamila Noriega-Abreu, known to her patients as Dr. Nory, earned her Doctor of Dental Medicine at Rutgers and built Nory Dentistry to deliver top-tier, deeply personal care. An early adopter of FDA-cleared EMFace technology in Port Charlotte, she treats the muscular and inflammatory drivers of TMD directly with HIFES and synchronized radiofrequency, rather than masking the symptoms.</p>
+    <p class="doc-quote fade-up">"I treat the person, not just the teeth, to help them become the most confident, healthiest version of themselves."</p>
+    <div class="doc-feats fade-up">
+      <div class="doc-feat"><span class="df-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9 12l2 2 4-4"/></svg></span>FDA-cleared EMFace technology</div>
+      <div class="doc-feat"><span class="df-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9 12l2 2 4-4"/></svg></span>Needle-free, drug-free, hands-free</div>
+      <div class="doc-feat"><span class="df-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9 12l2 2 4-4"/></svg></span>Personalized treatment plans, about 4 sessions</div>
+    </div>
+  </div>
+  <img class="sun-circle" src="images/sun-circle.png" alt="" style="right:40px;bottom:40px;width:112px;height:112px;">
+</section>
+
+<!-- Contact -->
+<section class="contact sec-pad" id="contact">
+  <form class="contact-form" id="consultForm">
+    <div>
+      <span class="eyebrow" style="display:block;margin-bottom:14px;">Get Started</span>
+      <h2 class="display-outline reveal">Request your consultation</h2>
+    </div>
+    <p class="form-deal"><span class="fd-pct">20%</span><span>Limited-time offer: book your EMFace consultation through this page and save <strong>20%</strong> on your treatment plan.</span></p>
+    <div class="form-row">
+      <div class="field"><label for="fn">First name</label><input id="fn" name="fn" type="text" placeholder="Jane" required></div>
+      <div class="field"><label for="ln">Last name</label><input id="ln" name="ln" type="text" placeholder="Doe" required></div>
+    </div>
+    <div class="form-row">
+      <div class="field"><label for="em">Email</label><input id="em" name="em" type="email" placeholder="jane@email.com" required></div>
+      <div class="field"><label for="ph">Phone</label><input id="ph" name="ph" type="tel" placeholder="(941) 000-0000"></div>
+    </div>
+    <div class="field"><label for="msg">Message</label><textarea id="msg" name="msg" placeholder="Tell us about your symptoms..."></textarea></div>
+    <button class="btn-submit" type="submit"><svg class="submit-arrow" width="44" height="44" viewBox="0 0 44 44" fill="none" aria-hidden="true"><defs><mask id="subArrowMask"><rect width="44" height="44" fill="white"></rect><g transform="translate(9.5,16)"><path d="M25 6L15 0.226497V11.7735L25 6ZM0 7H16V5H0V7Z" fill="black"></path></g></mask></defs><circle cx="22" cy="22" r="22" fill="#FFB128" mask="url(#subArrowMask)"></circle></svg><span>Submit</span></button>
+  </form>
+  <div class="map-col">
+    <div class="mc-head">
+      <span class="eyebrow" style="display:block;margin-bottom:10px;">Visit Us</span>
+      <span class="mc-city">Port Charlotte, FL</span>
+    </div>
+    <div class="map-frame">
+      <iframe title="Nory Dentistry location" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+        src="https://www.google.com/maps?q=Nory%20Dentistry%203443%20Tamiami%20Trail%20Suite%20F%20Port%20Charlotte%20FL%2033952&output=embed"></iframe>
+    </div>
+    <div class="contact-info">
+      <div class="ci-col">
+        <div class="ci-label">Call Us</div>
+        <a class="ci-big" href="tel:+19416298187">(941) 629-8187</a>
+        <div class="ci-addr">3443 Tamiami Trail, Suite F<br>Port Charlotte, FL 33952</div>
+      </div>
+      <div class="ci-col">
+        <div class="ci-label">Hours</div>
+        <div class="ci-line">Mon to Thu&nbsp;&nbsp;8:30am to 5:00pm<br>Fri to Sun&nbsp;&nbsp;Closed</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq sec-pad">
+  <div class="faq-head">
+    <span class="eyebrow">Questions</span>
+    <h2 class="display-outline reveal">EMFace for TMJ, explained</h2>
+  </div>
+  <div id="faqList">
+    <div class="faq-item open"><button class="faq-q"><span class="q-text">How does EMFace treat TMD?</span><span class="q-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></span></button><p class="faq-a">It pairs HIFES muscle stimulation with synchronized radiofrequency. HIFES relaxes the overworked jaw muscles that drive clenching and pain, while RF heat reduces inflammation and improves circulation, addressing both the muscular and inflammatory sides of TMD.</p></div>
+    <div class="faq-item"><button class="faq-q"><span class="q-text">What does a session feel like?</span><span class="q-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></span></button><p class="faq-a">Most patients describe a warm, tapping sensation as the applicators work the jaw muscles. It is hands-free and comfortable, you simply relax for about 20 minutes, and you can return to your day immediately afterward.</p></div>
+    <div class="faq-item"><button class="faq-q"><span class="q-text">How many sessions will I need?</span><span class="q-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></span></button><p class="faq-a">A typical course is about four sessions spaced 5 to 10 days apart. Dr. Nory will tailor the exact plan to your symptoms and goals during your consultation.</p></div>
+    <div class="faq-item"><button class="faq-q"><span class="q-text">Can it replace my night guard?</span><span class="q-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></span></button><p class="faq-a">EMFace targets the root muscular and inflammatory drivers of TMD, which can reduce clenching over time. Many patients keep their night guard as protection, and we will advise you based on your results.</p></div>
+    <div class="faq-item"><button class="faq-q"><span class="q-text">Who isn't a candidate?</span><span class="q-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></span></button><p class="faq-a">EMFace may not be suitable for patients with metal implants in the treatment area, certain electronic medical devices, or who are pregnant. A short consultation confirms whether it is right for you.</p></div>
+  </div>
+</section>
+
+</main>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="footer-top">
+    <div class="footer-brand">
+      <img class="fb-logo-img" src="images/footer-logo.svg" alt="Nory Dentistry">
+      <div class="fb-line">3443 Tamiami Trail, Suite F, Port Charlotte, FL 33952</div>
+      <a class="fb-phone" href="tel:+19416298187">(941) 629-8187</a>
+    </div>
+    <div class="footer-social">
+      <a class="social-link" href="https://www.facebook.com/p/Nory-TheDentist-61560454096471/" aria-label="Facebook" target="_blank" rel="noopener"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M14 9h3V6h-3c-1.7 0-3 1.3-3 3v2H9v3h2v7h3v-7h2.5l.5-3H14V9c0-.6.4-1 1-1z"/></svg></a>
+      <a class="social-link" href="https://www.instagram.com/nory.dentistry/" aria-label="Instagram" target="_blank" rel="noopener"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+    </div>
+  </div>
+  <div class="footer-divider"></div>
+  <div class="footer-copy">&copy; 2026 Nory Dentistry. All rights reserved.</div>
+</footer>
+
+<!-- Lenis smooth scroll -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lenis/1.1.5/lenis.min.js"></script>
+<script>
+(function(){
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(!reduce){ document.documentElement.classList.add('anim'); }
+  var loadRan=false;
+
+  /* ---------- Page load curtain ---------- */
+  function runLoad(){
+    if(loadRan) return; loadRan=true;
+    var panels = document.querySelectorAll('#curtain .panel');
+    if(reduce){ document.getElementById('curtain').style.display='none'; document.body.classList.add('loaded'); revealInitial(); return; }
+    panels.forEach(function(p,i){
+      p.style.transition='transform .7s cubic-bezier(0.76,0,0.24,1)';
+      p.style.transitionDelay=(i*0.08)+'s';
+      requestAnimationFrame(function(){ requestAnimationFrame(function(){ p.style.transform='translateY(-100%)'; }); });
+    });
+    setTimeout(function(){ document.getElementById('curtain').style.display='none'; document.body.classList.add('loaded'); revealInitial(); }, 1000);
+  }
+  if(document.readyState==='complete'){ runLoad(); } else { window.addEventListener('load', runLoad); }
+  function revealInitial(){
+    // reveal hero heading shortly after curtain
+    var h = document.querySelector('.hero .reveal');
+    if(h){ setTimeout(function(){ h.classList.add('in'); }, 150); }
+    document.querySelectorAll('.hero .fade-up').forEach(function(el,i){ setTimeout(function(){ el.classList.add('in'); }, 350 + i*120); });
+  }
+
+  /* ---------- Lenis ---------- */
+  var lenis=null;
+  if(!reduce && window.Lenis){
+    lenis = new Lenis({ lerp:0.1, smoothWheel:true });
+    window.lenis = lenis;
+    function raf(t){ lenis.raf(t); requestAnimationFrame(raf); }
+    requestAnimationFrame(raf);
+  }
+  // anchor links
+  document.querySelectorAll('a[href^="#"]').forEach(function(a){
+    a.addEventListener('click', function(e){
+      var id=a.getAttribute('href'); if(id==='#'||id.length<2) return;
+      var el=document.querySelector(id); if(!el) return;
+      e.preventDefault();
+      if(lenis){ lenis.scrollTo(el, {offset:-70}); } else { el.scrollIntoView({behavior:'smooth'}); }
+    });
+  });
+
+  /* ---------- Reveals + parallax (single rAF loop, guaranteed to run) ---------- */
+  function clamp(v,lo,hi){return Math.min(hi,Math.max(lo,v));}
+  function lerp(a,b,t){return a+(b-a)*t;}
+  var PAR={ scaleFrom:1.5, scaleTo:1.0, parallax:0.08 };
+  var holders = Array.prototype.slice.call(document.querySelectorAll('.px-holder')).map(function(h){
+    var img=h.querySelector('.fill-image'); return img?{holder:h,img:img}:null;
+  }).filter(Boolean);
+  var revealEls = Array.prototype.slice.call(document.querySelectorAll('.reveal, .fade-up')).filter(function(el){ return !el.closest('.hero'); });
+  if(reduce){
+    holders.forEach(function(o){ o.img.style.transform='translate3d(0,0,0) scale3d(1,1,1)'; });
+  } else {
+    var need=true;
+    function applyHolder(o,vh){
+      var r=o.holder.getBoundingClientRect();
+      if(r.bottom< -vh || r.top> vh*2) return;
+      var p=clamp((vh-r.top)/(vh+r.height),0,1);
+      var s=lerp(PAR.scaleFrom,PAR.scaleTo,p);
+      var y=(p-0.5)*2*PAR.parallax*r.height;
+      o.img.style.transform='translate3d(0,'+y.toFixed(2)+'px,0) scale3d('+s.toFixed(4)+','+s.toFixed(4)+',1)';
+    }
+    function processReveals(vh){
+      for(var i=revealEls.length-1;i>=0;i--){
+        var r=revealEls[i].getBoundingClientRect();
+        if(r.top < vh*0.88){ revealEls[i].classList.add('in'); revealEls.splice(i,1); }
+      }
+    }
+    function frame(){ if(need){ var vh=window.innerHeight; for(var i=0;i<holders.length;i++) applyHolder(holders[i],vh); processReveals(vh); need=false; } requestAnimationFrame(frame); }
+    var onScroll=function(){ need=true; };
+    if(lenis){ lenis.on('scroll', onScroll); } else { window.addEventListener('scroll', onScroll, {passive:true}); }
+    window.addEventListener('resize', onScroll, {passive:true});
+    frame();
+  }
+
+  /* ---------- Hero vertical marquee (carousel) ---------- */
+  (function(){
+    var colA=["images/emface2.jpg","images/emface12.jpg","images/emface6.jpg","images/emface24.jpg"];
+    var colB=["images/emface4.jpg","images/emface10.jpg","images/emface15.jpg","images/emface22.jpg","images/emface27.jpg"];
+    function fill(id,arr){
+      var node=document.getElementById(id); if(!node) return;
+      arr.concat(arr).forEach(function(src){
+        var w=document.createElement('div'); w.className='hcar-img';
+        var im=document.createElement('img'); im.src=src; im.alt='Nory EMFace'; im.loading='lazy';
+        w.appendChild(im); node.appendChild(w);
+      });
+    }
+    fill('marqA',colA); fill('marqB',colB);
+    var allH=colA.concat(colB);
+    var hrow=document.getElementById('marqH');
+    if(hrow){ allH.concat(allH).forEach(function(src){ var w=document.createElement('div'); w.className='hcar-h-img'; var im=document.createElement('img'); im.src=src; im.alt='Nory EMFace'; im.loading='lazy'; w.appendChild(im); hrow.appendChild(w); }); }
+  })();
+
+  /* ---------- Procedure video ---------- */
+  var pv=document.getElementById('procVideo'), pb=document.getElementById('playBtn');
+  if(pv&&pb){
+    pb.addEventListener('click', function(){
+      if(pv.paused){ pv.play(); pb.style.display='none'; }
+    });
+    pv.addEventListener('click', function(){ if(!pv.paused){ pv.pause(); pb.style.display='flex'; } });
+  }
+
+  /* ---------- Touch: hover effects become tap effects ---------- */
+  if(!(window.matchMedia && window.matchMedia('(hover:hover)').matches)){
+    document.querySelectorAll('.stat,.sym-card,.feat,.proc-stat,.proc-cards .pc,.rev-card,.dv-card,.footer-brand .fb-logo-img').forEach(function(el){
+      el.addEventListener('click', function(){ el.classList.toggle('tapped'); });
+    });
+  }
+
+  /* ---------- FAQ accordion ---------- */
+  document.querySelectorAll('.faq-item .faq-q').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var item=btn.closest('.faq-item');
+      var isOpen=item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(function(i){ i.classList.remove('open'); });
+      if(!isOpen) item.classList.add('open');
+    });
+  });
+
+  /* ---------- Quiz ---------- */
+  var QUIZ=[
+    { tag:'Step 1 of 4', q:'What is your primary concern?',
+      opts:['TMJ pain, clenching, or tension headaches','Facial muscle fatigue or limited jaw mobility','Teeth grinding (bruxism)','A combination of the above'] },
+    { tag:'Step 2 of 4', q:'How often do symptoms affect you?',
+      opts:['Daily','A few times a week','Occasionally','Constantly, it is hard to ignore'] },
+    { tag:'Step 3 of 4', q:'What have you tried so far?',
+      opts:['A night guard','Pain relievers','Physical therapy or massage','Nothing yet'] },
+    { tag:'Step 4 of 4', q:'What matters most to you?',
+      opts:['Avoiding surgery and needles','Long-lasting relief','Minimal downtime','A treatment backed by technology'] }
+  ];
+  var answers=[null,null,null,null];
+  var current=0;
+  var resultShown=false;
+  var activeQ=document.getElementById('activeQ');
+  var steps=document.querySelectorAll('#stepRail .step');
+
+  function renderStep(){
+    if(resultShown){ return renderResult(); }
+    var data=QUIZ[current];
+    var isLast=current===QUIZ.length-1;
+    var answeredAll=answers.every(function(a){return a!==null;});
+    var html='';
+    html+='<span class="step-tag">'+data.tag+'</span>';
+    html+='<h3 class="q-title">'+data.q+'</h3>';
+    html+='<div class="options">';
+    data.opts.forEach(function(o,i){
+      var sel=answers[current]===i?' selected':'';
+      html+='<button type="button" class="opt'+sel+'" data-i="'+i+'"><span class="radio"></span><span class="opt-label">'+o+'</span></button>';
+    });
+    html+='</div>';
+    html+='<div class="cta-row">';
+    if(current>0){ html+='<button type="button" class="quiz-back" id="quizBack">&larr; Back</button>'; }
+    else { html+='<div class="result-note"><div class="rn-title">You may be a strong candidate</div><div class="rn-sub">Answer all 4 to see your results</div></div>'; }
+    if(isLast){
+      var disabled = answers[current]===null ? ' style="opacity:.5;pointer-events:none;"' : '';
+      html+='<button type="button" class="btn-amber" id="quizCta"'+disabled+'>Get My Results <span class="arr" aria-hidden="true">&rarr;</span></button>';
+    } else {
+      var dis = answers[current]===null ? ' style="opacity:.5;pointer-events:none;"' : '';
+      html+='<button type="button" class="btn-amber" id="quizNext"'+dis+'>Next <span class="arr" aria-hidden="true">&rarr;</span></button>';
+    }
+    html+='</div>';
+    activeQ.innerHTML=html;
+
+    steps.forEach(function(s,i){
+      s.classList.remove('active','done');
+      if(i<current) s.classList.add('done');
+      if(i===current) s.classList.add('active');
+    });
+
+    activeQ.querySelectorAll('.opt').forEach(function(b){
+      b.addEventListener('click', function(){ answers[current]=parseInt(b.dataset.i,10); renderStep(); });
+    });
+    var nx=document.getElementById('quizNext'); if(nx) nx.addEventListener('click', function(){ if(current<QUIZ.length-1){ current++; renderStep(); } });
+    var bk=document.getElementById('quizBack'); if(bk) bk.addEventListener('click', function(){ if(current>0){ current--; renderStep(); } });
+    var cta=document.getElementById('quizCta');
+    if(cta){ cta.addEventListener('click', function(){ resultShown=true; renderStep(); }); }
+  }
+  function renderResult(){
+    steps.forEach(function(s){ s.classList.remove('active'); s.classList.add('done'); });
+    var html='';
+    html+='<span class="step-tag">Your Result</span>';
+    html+='<h3 class="q-title">You are a great candidate for EMFace</h3>';
+    html+='<p class="quiz-result-text">Based on your answers, EMFace looks like a strong fit for relieving your TMJ symptoms. Book a consultation and Dr. Nory will confirm your candidacy and tailor a treatment plan to you.</p>';
+    html+='<div class="cta-row"><button type="button" class="quiz-back" id="quizRetake">&larr; Retake quiz</button><a class="btn-amber" id="quizGoForm" href="#contact">Request Your Consultation <span class="arr" aria-hidden="true">&rarr;</span></a></div>';
+    activeQ.innerHTML=html;
+    var retake=document.getElementById('quizRetake');
+    if(retake){ retake.addEventListener('click', function(){ resultShown=false; current=0; answers=[null,null,null,null]; renderStep(); }); }
+    var go=document.getElementById('quizGoForm');
+    if(go){ go.addEventListener('click', function(e){
+      var el=document.getElementById('contact'); var msg=document.getElementById('msg');
+      if(msg){ msg.value='I completed the EMFace quiz and I am a candidate. My primary concern: '+QUIZ[0].opts[answers[0]||0]+'.'; }
+      e.preventDefault();
+      if(lenis){ lenis.scrollTo(el,{offset:-70}); } else { el.scrollIntoView({behavior:'smooth'}); }
+      setTimeout(function(){ var fn=document.getElementById('fn'); if(fn) fn.focus(); }, 700);
+    }); }
+  }
+  renderStep();
+
+  /* ---------- Contact form ---------- */
+  var form=document.getElementById('consultForm');
+  if(form){ form.addEventListener('submit', function(e){
+    e.preventDefault();
+    var btn=form.querySelector('button[type=submit]');
+    btn.textContent='Thank you! We will be in touch.';
+    btn.style.pointerEvents='none';
+  }); }
+
+  /* ---------- Header bg on scroll ---------- */
+  var header=document.querySelector('.header');
+  function onScrollHeader(){ if(window.scrollY>40){ header.style.background='rgba(0,35,28,0.95)'; } else { header.style.background='rgba(0,35,28,0.82)'; } }
+  if(lenis){ lenis.on('scroll', onScrollHeader); } else { window.addEventListener('scroll', onScrollHeader, {passive:true}); }
+})();
+</script>
+</body>
+</html>
